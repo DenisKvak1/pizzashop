@@ -61,28 +61,28 @@ import CartPoper from "@/components/cartPoper.vue";
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
 
                     <li class="nav-item">
-                        <button class="link nav-link" aria-current="page" @click="router.push('/pizza')">Пицца</button>
+                        <button class="link nav-link" aria-current="page" @click="router.push('/products/pizza')">Пицца</button>
                     </li>
                     <li class="nav-item">
-                        <button class="link nav-link" aria-current="page" @click="router.push('/paste')">Паста</button>
+                        <button class="link nav-link" aria-current="page" @click="router.push('/products/paste')">Паста</button>
                     </li>
                     <li class="nav-item">
-                        <button class="link nav-link" aria-current="page" @click="router.push('/pizza')">Супы</button>
+                        <button class="link nav-link" aria-current="page" @click="router.push('/products/pizza')">Супы</button>
                     </li>
                     <li class="nav-item">
-                        <button class="link nav-link" aria-current="page" @click="router.push('/pizza')">Салаты</button>
+                        <button class="link nav-link" aria-current="page" @click="router.push('/products/pizza')">Салаты</button>
                     </li>
                     <li class="nav-item">
-                        <button class="link nav-link" aria-current="page" @click="router.push('/pizza')">Напитки</button>
+                        <button class="link nav-link" aria-current="page" @click="router.push('/products/drink')">Напитки</button>
                     </li>
                     <li class="nav-item">
-                        <button class="link nav-link" aria-current="page" @click="router.push('/pizza')">Десерты</button>
+                        <button class="link nav-link" aria-current="page" @click="router.push('/products/pizza')">Десерты</button>
                     </li>
                     <li class="nav-item">
-                        <button class="link nav-link" aria-current="page" @click="router.push('/pizza')">Бакалея</button>
+                        <button class="link nav-link" aria-current="page" @click="router.push('/products/pizza')">Бакалея</button>
                     </li>
                     <li class="nav-item">
-                        <a class="link nav-link" aria-current="page" @click="router.push('/pizza')">Антипасти</a>
+                        <a class="link nav-link" aria-current="page" @click="router.push('/products/pizza')">Антипасти</a>
                     </li>
                     <li class="nav-item">
                         <button class="link nav-link" aria-current="page">Акции</button>

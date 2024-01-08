@@ -1,13 +1,12 @@
 import mainPage from "@/pages/mainPage.vue";
 import {createRouter, createWebHistory} from 'vue-router'
-import NotFound from "@/pages/NotFound.vue";
 const routes = [
     {
         path: '/',
         component: mainPage
     },
     {
-        path: '/:type',
+        path: '/products/:type',
         component: mainPage
     },
 

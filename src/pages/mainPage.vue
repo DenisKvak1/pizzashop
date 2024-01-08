@@ -14,7 +14,11 @@ import CartPoper from "@/components/cartPoper.vue";
 let store=useStore()
 const route = useRoute()
 
-let banners= ref([{id:1,image:'src/assets/images/Banner1.png'},{id:2,image:'src/assets/images/Banner2.png'},{id:3,image:'src/assets/images/Banner3.png'}])
+let banners = ref([
+    { id: 1, image: '/src/assets/images/Banner1.png' },
+    { id: 2, image: '/src/assets/images/Banner2.png' },
+    { id: 3, image: '/src/assets/images/Banner3.png' }
+])
 let productForAddToCart= ref({})
 let dialogVisible=ref(false)
 function showDialog(data){
@@ -31,6 +35,7 @@ onMounted(()=>{
     store.dispatch('loadDataApi', type)
 })
 watch(() => route.params.type, (newType, oldType) => {
+
     type = newType ? newType : 'pizza';
     store.dispatch('loadDataApi', type);
 });
