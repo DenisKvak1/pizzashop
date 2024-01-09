@@ -1,7 +1,7 @@
 <script setup>
 import 'swiper/css';
 import MainHeader from "@/components/mainHeader.vue";
-import { onMounted,  ref, watch} from "vue";
+import {computed, onMounted, ref, watch} from "vue";
 import BannerSlider from "@/components/bannerSlider.vue";
 import NewsBlock from "@/components/newsBlock.vue";
 import MainShopList from "@/components/mainShopList.vue";
@@ -10,6 +10,7 @@ import {useStore} from "vuex";
 import {useRoute} from "vue-router";
 import ClassicButton from "@/UI/classicButton.vue";
 import CartPoper from "@/components/cartPoper.vue";
+import {filterNewProducts} from "@/helper/filterNewProducts.js";
 
 let store=useStore()
 const route = useRoute()
@@ -29,6 +30,7 @@ function hideDialog(){
     productForAddToCart.value = {}
     dialogVisible.value = false
 }
+let newItem=computed(()=>filterNewProducts(store.state.products))
 
 let type= route.params.type ? route.params.type : 'pizza'
 onMounted(()=>{
@@ -45,7 +47,7 @@ watch(() => route.params.type, (newType, oldType) => {
     <main-header class="hc"></main-header>
     <div class="myContainer">
         <banner-slider :banners="banners"></banner-slider>
-        <news-block v-if="$store.state.products" @addToCart="showDialog" :products="$store.state.products"></news-block>
+        <news-block v-if="$store.state.products" @addToCart="showDialog" :products="newItem"></news-block>
         <main-shop-list @addToCart="showDialog" :products="$store.state.products"></main-shop-list>
 
         <add-to-cart-modal v-if="dialogVisible" :show="dialogVisible" @close="hideDialog" :product="productForAddToCart"></add-to-cart-modal>
@@ -63,7 +65,7 @@ watch(() => route.params.type, (newType, oldType) => {
 }
 .cart{
     position: fixed;
-    top: 541px;
+    top: 581px;
     right: 11px;
     z-index: 2500;
 }

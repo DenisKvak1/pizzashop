@@ -14,6 +14,13 @@ export default createStore({
                 {title:'Хитрый соус 5', id:5, price:250, image:'/src/assets/images/Sous.png'},
                 {title:'Хитрый соус 6', id:6, price:70, image:'/src/assets/images/Sous.png'},
                 {title:'Хитрый соус 7', id:7, price:131, image:'/src/assets/images/Sous.png'},
+            ],
+            addonDrink:[
+                {title:'Не хитрое пиво 1', id:1, price:120, image:'/src/assets/images/Sous.png'},
+                {title:'Доверчивый сухарь 2', id:2, price:110, image:'/src/assets/images/Sous.png'},
+                {title:'Не хитрое пиво 3', id:3, price:140, image:'/src/assets/images/Sous.png'},
+                {title:'Доверчивый сухарь 4', id:4, price:120, image:'/src/assets/images/Sous.png'},
+                {title:'Не хитрое пиво 5', id:5, price:250, image:'/src/assets/images/Sous.png'},
             ]
         }
     },

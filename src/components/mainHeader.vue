@@ -3,6 +3,22 @@
 import ClassicButton from "@/UI/classicButton.vue";
 import router from "@/router/router.js";
 import CartPoper from "@/components/cartPoper.vue";
+import {onBeforeUnmount, onMounted, watch} from "vue";
+
+const handleWidthChange = (event) => {
+    if (event.matches) {
+        document
+            .querySelectorAll('[data-bs-toggle]')
+            .forEach((element) => element.removeAttribute('data-bs-toggle'));
+    }
+};
+const mediaQuery = window.matchMedia('(min-width: 1200px)');
+mediaQuery.addListener(handleWidthChange);
+onMounted(() => {
+    handleWidthChange(mediaQuery);
+});
+onBeforeUnmount(() => mediaQuery.removeListener(handleWidthChange));
+
 </script>
 
 <template>
@@ -61,28 +77,28 @@ import CartPoper from "@/components/cartPoper.vue";
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
 
                     <li class="nav-item">
-                        <button class="link nav-link" aria-current="page" @click="router.push('/products/pizza')">Пицца</button>
+                        <button class="link nav-link" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-current="page" @click="router.push('/products/pizza')">Пицца</button>
                     </li>
                     <li class="nav-item">
-                        <button class="link nav-link" aria-current="page" @click="router.push('/products/paste')">Паста</button>
+                        <button class="link nav-link" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-current="page" @click="router.push('/products/paste')">Паста</button>
                     </li>
                     <li class="nav-item">
-                        <button class="link nav-link" aria-current="page" @click="router.push('/products/pizza')">Супы</button>
+                        <button class="link nav-link" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-current="page" @click="router.push('/products/pizza')">Супы</button>
                     </li>
                     <li class="nav-item">
-                        <button class="link nav-link" aria-current="page" @click="router.push('/products/pizza')">Салаты</button>
+                        <button class="link nav-link" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-current="page" @click="router.push('/products/pizza')">Салаты</button>
                     </li>
                     <li class="nav-item">
-                        <button class="link nav-link" aria-current="page" @click="router.push('/products/drink')">Напитки</button>
+                        <button class="link nav-link" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-current="page" @click="router.push('/products/drink')">Напитки</button>
                     </li>
                     <li class="nav-item">
-                        <button class="link nav-link" aria-current="page" @click="router.push('/products/pizza')">Десерты</button>
+                        <button class="link nav-link" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-current="page" @click="router.push('/products/pizza')">Десерты</button>
                     </li>
                     <li class="nav-item">
-                        <button class="link nav-link" aria-current="page" @click="router.push('/products/pizza')">Бакалея</button>
+                        <button class="link nav-link" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-current="page" @click="router.push('/products/pizza')">Бакалея</button>
                     </li>
                     <li class="nav-item">
-                        <a class="link nav-link" aria-current="page" @click="router.push('/products/pizza')">Антипасти</a>
+                        <a class="link nav-link" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-current="page" @click="router.push('/products/pizza')">Антипасти</a>
                     </li>
                     <li class="nav-item">
                         <button class="link nav-link" aria-current="page">Акции</button>
