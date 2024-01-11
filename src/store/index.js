@@ -22,7 +22,9 @@ export default createStore({
                 {title:'Доверчивый сухарь 4', id:4, price:120, image:'/src/assets/images/Sous.png'},
                 {title:'Не хитрое пиво 5', id:5, price:250, image:'/src/assets/images/Sous.png'},
             ]
-        }
+        },
+        promo: '',
+        discount: 1
     },
     getters:{
 
@@ -32,7 +34,13 @@ export default createStore({
             state.products = newData;
         },
         setCart(state, newData){
-            state.cart= newData
+            state.cart = newData
+        },
+        setPromo(state, newData){
+            state.promo = newData
+        },
+        setDiscount(state, newData){
+            state.discount = newData>1 ? 1-(newData / 100) : 1-newData
         }
     },
     actions:{
@@ -68,7 +76,6 @@ export default createStore({
                 commit('setCart', tempCart)
             }
         },
-
     },
     modules:{
 

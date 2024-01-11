@@ -9,8 +9,8 @@ export default function addonArray(array){
             "title": "Напиток 1",
             "description": "Ролл с лососем, авокадо и сливочным сыром, украшенный икрой тобико",
             "price": 300,
-            "image": "http://192.168.0.161:3000/drinkItem.png",
-            "image2": "http://192.168.0.161:3000/drinkCart.png",
+            "image": "http://192.168.0.161:3000/images/drinkItem.png",
+            "image2": "http://192.168.0.161:3000/images/drinkCart.png",
             "weight": 152,
             "length": 25,
             "date": "2021-12-10",
@@ -22,8 +22,8 @@ export default function addonArray(array){
             "title": "Напиток 2",
             "description": "Ролл с лососем, авокадо и сливочным сыром, украшенный икрой тобико",
             "price": 300,
-            "image": "http://192.168.0.161:3000/drinkItem2.png",
-            "image2": "http://192.168.0.161:3000/drinkCart2.png",
+            "image": "http://192.168.0.161:3000/images/drinkItem2.png",
+            "image2": "http://192.168.0.161:3000/images/drinkCart2.png",
             "weight": 152,
             "length": 25,
             "date": "2021-12-10",
@@ -35,8 +35,8 @@ export default function addonArray(array){
             "title": "Напиток 3",
             "description": "Ролл с лососем, авокадо и сливочным сыром, украшенный икрой тобико",
             "price": 300,
-            "image": "http://192.168.0.161:3000/drinkItem.png",
-            "image2": "http://192.168.0.161:3000/drinkCart.png",
+            "image": "http://192.168.0.161:3000/images/drinkItem.png",
+            "image2": "http://192.168.0.161:3000/images/drinkCart.png",
             "weight": 152,
             "length": 25,
             "date": "2021-12-10",
@@ -48,8 +48,8 @@ export default function addonArray(array){
             "title": "Напиток 4",
             "description": "Ролл с лососем, авокадо и сливочным сыром, украшенный икрой тобико",
             "price": 300,
-            "image": "http://192.168.0.161:3000/drinkItem2.png",
-            "image2": "http://192.168.0.161:3000/drinkCart2.png",
+            "image": "http://192.168.0.161:3000/images/drinkItem2.png",
+            "image2": "http://192.168.0.161:3000/images/drinkCart2.png",
             "weight": 152,
             "length": 25,
             "date": "2021-12-10",
@@ -61,8 +61,8 @@ export default function addonArray(array){
             "title": "Напиток 5",
             "description": "Ролл с лососем, авокадо и сливочным сыром, украшенный икрой тобико",
             "price": 300,
-            "image": "http://192.168.0.161:3000/drinkItem2.png",
-            "image2": "http://192.168.0.161:3000/drinkCart2.png",
+            "image": "http://192.168.0.161:3000/images/drinkItem2.png",
+            "image2": "http://192.168.0.161:3000/images/drinkCart2.png",
             "weight": 152,
             "length": 25,
             "date": "2021-12-10",
@@ -70,5 +70,8 @@ export default function addonArray(array){
             "addon" : true
         }
     ]
-    return data
+    let arrayIds = array.map(item => item.product.id);
+    let filteredData = data.filter(item => !arrayIds.includes(item.id));
+    return filteredData
+
 }

@@ -31,7 +31,7 @@ let props = defineProps({
     padding: 5px 15px;
 }
 .mySwiper{
-    max-height: 350px;
+    max-height: 300px;
 }
 .slide{
     height: auto;

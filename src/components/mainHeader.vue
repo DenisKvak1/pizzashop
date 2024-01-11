@@ -110,12 +110,13 @@ onBeforeUnmount(() => mediaQuery.removeListener(handleWidthChange));
                         <button class="link nav-link" aria-current="page">Контакты</button>
                     </li>
                     <li class="nav-item">
-                        <button class="link nav-link active" aria-current="page">Войти</button>
+                        <button class="link nav-link active" aria-current="page" @click="router.push('/cart')">Войти</button>
                     </li>
                     <li class="nav-item">
                         <a class="link nav-link number" aria-current="page">8 499 391-84-49</a>
                     </li>
                     <li class="nav-item cni">
+                        <classic-button class="cartButton2" aria-current="page" @click="router.push('/cart')">Корзина</classic-button>
                         <cart-poper class="cart" :placement="'bottom'">
                             <classic-button class="cartButton" aria-current="page">Корзина</classic-button>
                         </cart-poper>
@@ -148,12 +149,12 @@ onBeforeUnmount(() => mediaQuery.removeListener(handleWidthChange));
 a img{
     height: 45px;
 }
-.cartButton{
+.cartButton2{
     background: white;
     margin-top: 19px;
 }
 
-.numberBrand, .cartBrand {
+.numberBrand, .cartBrand, .cartButton {
     display: none ;
 }
 .zvonok,.dostavkaNone{
@@ -198,6 +199,9 @@ nav:has(.show), nav:has(.collapsing){
 }
 
 @media (min-width: 768px) {
+    .cartButton2{
+        display: none;
+    }
     nav:has(.show), nav:has(.collapsing){
         background: white;
     }

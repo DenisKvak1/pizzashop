@@ -1,9 +1,11 @@
 <script setup>
 import {useStore} from "vuex";
 import SwiperInCart from "@/components/swiperInCart.vue";
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import NewItemSlider from "@/components/newItemSlider.vue";
 import addonArray from "@/helper/addonArray.js";
+import ClassicButton from "@/UI/classicButton.vue";
+import router from "@/router/router.js";
 
 let store= useStore()
 let props= defineProps({
@@ -24,13 +26,16 @@ function openS(){
     show.value=true
 }
 function closeS(){
-    setTimeout(()=>show.value=false, 350)
+    setTimeout(()=>show.value=false, 150)
 }
 function Addon(data){
     let tempObject = {product: data,souses: [], size: 'M'}
     tempObject.product.count=1
     store.dispatch('pushItemInCart', tempObject)
 }
+let sumPrice = computed(()=>{
+    return (store.state.cart.reduce((sum, item) => sum + (item.product.price * item.product.count), 0) + store.state.cart.reduce((acc, obj) => acc + obj.souses.reduce((s, src) => s + src.price, 0), 0) )* store.state.discount
+})
 </script>
 
 <template>
@@ -48,14 +53,14 @@ function Addon(data){
                     <swiper-in-cart :show="show" @delSouse="deleteSousInCart" @delete="deleteInCart"></swiper-in-cart>
                     <div v-if="store.state.cart.length>0" class="price d-flex justify-content-between align-items-center">
                         <span class="st">Сумма заказа</span>
-                        <span class="sumPrice">{{store.state.cart.reduce((sum, item) => sum + (item.product.price * item.product.count), 0) + store.state.cart.reduce((acc, obj) => acc + obj.souses.reduce((s, src) => s + src.price, 0), 0)}} ₽</span>
+                        <span class="sumPrice">{{sumPrice}} ₽</span>
                     </div>
-                    <div v-if="store.state.cart.length>0" class="addD d-flex justify-content-between align-items-center">
+                    <div v-if="store.state.cart.length>0 && addonArray(store.state.cart).length>0" class="addD d-flex justify-content-between align-items-center">
                         <span class="add ">Добавить к заказу?</span>
                         <span></span>
                     </div>
-
-                    <new-item-slider v-if="store.state.cart.length>0" class="slider" @addToCart="Addon" :products="addonArray(store.state.products)"></new-item-slider>
+                    <new-item-slider v-if="store.state.cart.length>0 && addonArray(store.state.cart).length>0" class="slider" @addToCart="Addon" :products="addonArray(store.state.cart)"></new-item-slider>
+                    <classic-button v-if="store.state.cart.length>0" class="oform mb-3" @click="router.push('/cart')">Оформить заказ</classic-button>
                 </div>
             </div>
         </template>
@@ -64,6 +69,10 @@ function Addon(data){
 </template>
 
 <style scoped>
+.oform{
+    display: flex;
+    margin-left: 15px;
+}
 .addD{
     margin-left: 15px;
 }
@@ -95,15 +104,15 @@ function Addon(data){
     margin-right: 10px;
     position: static;
 }
-@media (min-width: 768px) {
-    .wrap{
-        margin-right: 20px;
-    }
-}
 .popper {
     background-color: white;
     border-radius: 10px;
     border: 3.5px solid rgba(247, 210, 45, 0.40);
     box-shadow: 0px 4px 28px 0px rgba(0, 0, 0, 0.08);
+}
+@media (min-width: 768px) {
+    .wrap{
+        margin-right: 20px;
+    }
 }
 </style>

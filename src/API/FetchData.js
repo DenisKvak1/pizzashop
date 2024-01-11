@@ -1,7 +1,7 @@
 export default async function fetchData(name) {
     try {
-        const response = await fetch(`http://192.168.0.161:3000/${name}`);
 
+        const response = await fetch(`http://192.168.0.161:3000/api/products/${name}`);
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }

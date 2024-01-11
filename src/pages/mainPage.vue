@@ -11,9 +11,11 @@ import {useRoute} from "vue-router";
 import ClassicButton from "@/UI/classicButton.vue";
 import CartPoper from "@/components/cartPoper.vue";
 import {filterNewProducts} from "@/helper/filterNewProducts.js";
+import {saveLoadLocalStorage} from "@/hooks/localStorageHook.js";
 
 let store=useStore()
 const route = useRoute()
+saveLoadLocalStorage(store)
 
 let banners = ref([
     { id: 1, image: '/src/assets/images/Banner1.png' },
