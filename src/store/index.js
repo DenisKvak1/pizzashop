@@ -24,7 +24,9 @@ export default createStore({
             ]
         },
         promo: '',
-        discount: 1
+        discount: 1,
+        isAuth: false,
+        accountDate : {}
     },
     getters:{
 
@@ -41,6 +43,9 @@ export default createStore({
         },
         setDiscount(state, newData){
             state.discount = newData>1 ? 1-(newData / 100) : 1-newData
+        },
+        setAccountDate(state, newData){
+            state.accountDate = newData
         }
     },
     actions:{

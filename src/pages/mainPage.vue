@@ -11,7 +11,9 @@ import {useRoute} from "vue-router";
 import ClassicButton from "@/UI/classicButton.vue";
 import CartPoper from "@/components/cartPoper.vue";
 import {filterNewProducts} from "@/helper/filterNewProducts.js";
-import {saveLoadLocalStorage} from "@/hooks/localStorageHook.js";
+import AuthModal from "@/components/authModal.vue";
+import {saveLoadLocalStorage} from "@/hooks/loadAccountData.js";
+import {loadUserDate} from "@/hooks/localStorageHook.js";
 
 let store=useStore()
 const route = useRoute()
@@ -24,6 +26,7 @@ let banners = ref([
 ])
 let productForAddToCart= ref({})
 let dialogVisible=ref(false)
+let authDialogVisible=ref(false)
 function showDialog(data){
     productForAddToCart.value = data
     dialogVisible.value = true
@@ -37,6 +40,7 @@ let newItem=computed(()=>filterNewProducts(store.state.products))
 let type= route.params.type ? route.params.type : 'pizza'
 onMounted(()=>{
     store.dispatch('loadDataApi', type)
+    loadUserDate(store)
 })
 watch(() => route.params.type, (newType, oldType) => {
 
@@ -46,7 +50,7 @@ watch(() => route.params.type, (newType, oldType) => {
 </script>
 
 <template>
-    <main-header class="hc"></main-header>
+    <main-header @openAuth="authDialogVisible = true" class="hc"></main-header>
     <div class="myContainer">
         <banner-slider :banners="banners"></banner-slider>
         <news-block v-if="$store.state.products" @addToCart="showDialog" :products="newItem"></news-block>
@@ -56,6 +60,7 @@ watch(() => route.params.type, (newType, oldType) => {
         <cart-poper v-if="$store.state.cart.length >0" class="cart" :placement="'top'">
             <classic-button>Корзина</classic-button>
         </cart-poper>
+        <auth-modal v-if="authDialogVisible" @close="authDialogVisible = false" :show="authDialogVisible"></auth-modal>
     </div>
 </template>
 

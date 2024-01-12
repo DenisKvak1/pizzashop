@@ -109,8 +109,11 @@ onBeforeUnmount(() => mediaQuery.removeListener(handleWidthChange));
                     <li class="nav-item">
                         <button class="link nav-link" aria-current="page">Контакты</button>
                     </li>
-                    <li class="nav-item">
-                        <button class="link nav-link active" aria-current="page" @click="router.push('/cart')">Войти</button>
+                    <li class="nav-item" v-if="!$store.state.isAuth">
+                        <button class="link nav-link active" aria-current="page" @click="$emit('openAuth')">Войти</button>
+                    </li>
+                    <li class="nav-item" v-else>
+                        <button class="link nav-link active" aria-current="page" @click="router.push('/account')">Личный кабинет</button>
                     </li>
                     <li class="nav-item">
                         <a class="link nav-link number" aria-current="page">8 499 391-84-49</a>

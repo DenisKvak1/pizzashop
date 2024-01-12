@@ -1,16 +1,12 @@
-import {watch} from "vue";
-import {loadLocalData, saveLocalData} from "@/helper/LocalStorage.js";
-export function saveLoadLocalStorage(store){
-    let data
-    let loadData = loadLocalData('cart')
-    if(loadData){
-        data = loadData
-    } else {
-        data = []
+import {getCookie} from "@/helper/setSaveCookies.js";
+import {loadData} from "@/API/authPhone.js";
+export async function loadUserDate(store){
+    let loadJwt = getCookie('jwt')
+    if(getCookie('jwt')){
+        let data = await loadData(loadJwt)
+        if(data.success){
+            store.state.isAuth=true
+            store.commit('setAccountDate',data.data)
+        }
     }
-
-    watch(()=>store.state.cart, (newValue)=>{
-        saveLocalData('cart', newValue)
-    })
-    store.commit('setCart', data)
 }

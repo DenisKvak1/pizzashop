@@ -1,6 +1,7 @@
 import mainPage from "@/pages/mainPage.vue";
 import {createRouter, createWebHistory} from 'vue-router'
 import cartPage from "@/pages/cartPage.vue";
+import personAccountPage from "@/pages/personAccountPage.vue";
 const routes = [
     {
         path: '/',
@@ -14,6 +15,10 @@ const routes = [
         path: '/cart',
         component: cartPage
     },
+    {
+        path: '/account',
+        component: personAccountPage
+    }
 ]
 
 const router = createRouter({
