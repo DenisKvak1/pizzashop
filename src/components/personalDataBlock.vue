@@ -7,9 +7,11 @@ import OptionAccount from "@/components/optionAccount.vue";
 let store = useStore()
 
 function saveName(data){
-    let storik = JSON.parse(JSON.stringify(store.state.accountDate))
-    storik.name = data
-    saveData(getCookie('jwt'), storik)
+    if(data){
+        let storik = JSON.parse(JSON.stringify(store.state.accountDate))
+        storik.name = data
+        saveData(getCookie('jwt'), storik)
+    }
 }
 
 </script>

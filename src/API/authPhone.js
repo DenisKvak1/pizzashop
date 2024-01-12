@@ -51,7 +51,7 @@ export async function loadData(jwt){
 export async function saveData(jwt , ForSend){
     try {
         const response = await fetch('http://192.168.0.161:3000/auth/createData', {
-            method: 'POST',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
             },

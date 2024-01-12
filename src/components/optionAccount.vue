@@ -8,6 +8,7 @@ let props = defineProps({
 })
 let disabled =ref(true)
 let name = ref()
+let backName = ref()
 onMounted(()=>{
     name.value = props.name
 })
@@ -16,10 +17,19 @@ watch(()=>props, ()=>{
 }, {deep: true})
 function dis(){
     disabled.value ? disabled.value=false : disabled.value=true
+    backName.value = name.value
 }
 function dis2(){
     disabled.value ? disabled.value=false : disabled.value=true
-    emit('save', name.value)
+    if(name.value){
+        emit('save', name.value)
+    } else {
+        name.value = backName.value
+    }
+}
+function cancel(){
+    disabled.value ? disabled.value=false : disabled.value=true
+    name.value = backName.value
 }
 </script>
 
@@ -36,7 +46,7 @@ function dis2(){
             </div>
         </div>
         <div class="d-flex justify-content-end">
-            <button v-if="!disabled && work" class="noneBtn label cancel me-4" @click="dis">Отменить</button>
+            <button v-if="!disabled && work" class="noneBtn label cancel me-4" @click="cancel">Отменить</button>
         </div>
     </div>
 </template>
@@ -79,5 +89,35 @@ input{
 }
 input:focus{
     outline: none;
+}
+@media (min-width: 768px) {
+    input{
+        width: 350px;
+    }
+    button.cancel{
+        color: #F7D22D;
+        position: absolute;
+        left: 250px;
+    }
+    button.save{
+        color: #9D9D9B;
+        position: absolute;
+        left: 250px;
+    }
+}
+@media (min-width: 1100px) {
+    input{
+        width: 350px;
+    }
+    button.cancel{
+        color: #F7D22D;
+        position: absolute;
+        left: calc((100% - 768px )/2 + 84px);
+    }
+    button.save{
+        color: #9D9D9B;
+        position: absolute;
+        left: calc((100% - 768px )/2 + 84px);
+    }
 }
 </style>

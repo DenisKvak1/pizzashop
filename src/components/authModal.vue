@@ -15,6 +15,7 @@ let phone = ref()
 let code = ref()
 let state= ref(1)
 let invalid = ref(false)
+let invalidCode = ref(false)
 async function thisAuthPhone(){
     if(!isNaN(+phone.value)){
         let response = await authPhone(phone.value)
@@ -27,7 +28,7 @@ async function thisAuthPhone(){
     }
 }
 async function thisAuthPhoneCode(){
-    if(code){
+    if((+code.value>=1000 && +code.value<=9999)){
         let response = await authPhoneCode(code.value, phone.value)
         if(response.success){
             store.commit('setAccountDate',response.data)
@@ -37,6 +38,9 @@ async function thisAuthPhoneCode(){
             store.state.isAuth = true
             await router.push('/account')
         }
+    }else {
+        invalidCode.value = true
+        setTimeout(()=>invalidCode.value = false,1000)
     }
 }
 </script>
@@ -50,17 +54,22 @@ async function thisAuthPhoneCode(){
                     <img src="@/assets/images/CloseIcon.png">
                 </button>
             </div>
-            <div class="mt-3" v-if="state===1">
-                <span class="numText text-start me-auto d-block">Номер телефона</span>
-                <input v-model="phone" type="text" :class="{invalid: invalid}" class="mobileText mt-2">
+            <div class="mt-3 blockN" v-if="state===1">
+                <span class="numText text-start me-auto d-block">Номер телефона:</span>
+                <input :class="{invalid: invalid}"  v-model="phone" type="text" class="mobileText mt-2">
             </div>
-            <div class="mt-3" v-if="state===2">
+            <div class="mt-3 blockN" v-if="state===2">
                 <span class="numText text-start me-auto d-block">Код из СМС</span>
-                <input v-model="code" type="text" class="mobileText mt-2">
+                <input :class="{invalid: invalidCode}" v-model="code" type="text" class="mobileText mt-2">
             </div>
-            <classic-button v-if="state===2" class="mt-2" @click="thisAuthPhoneCode">Подтвердить код</classic-button>
-            <button v-if="state===1" class="noneBtn sendCode" @click="thisAuthPhone">Выслать код</button>
-            <p class="wrong mt-2">Продолжая, вы соглашаетесь со сбором и обработкой персональных данных и пользовательским соглашением</p>
+            <div class="blockSend" v-if="state===2">
+                <button class="mt-2 noneBtn sendCode" @click="thisAuthPhoneCode">Подтвердить код</button>
+                <p class="wrong mt-2">Продолжая, вы соглашаетесь со сбором и обработкой персональных данных и пользовательским соглашением</p>
+            </div>
+            <div class="blockSend" v-if="state===1">
+                <button class="noneBtn sendCode" @click="thisAuthPhone">Выслать код</button>
+                <p class="wrong mt-2">Продолжая, вы соглашаетесь со сбором и обработкой персональных данных и пользовательским соглашением</p>
+            </div>
         </div>
     </start-modal>
 </template>
@@ -118,5 +127,33 @@ async function thisAuthPhoneCode(){
 .close img{
     width: 25px;
     height: 25px;
+}
+@media(min-width: 768px){
+    .content{
+        width: 668px;
+        height: 320px;
+        padding: 40px;
+    }
+    .blockN{
+        display: flex;
+        align-items: center;
+    }
+    .numText{
+        flex-shrink: 0;
+        padding-right: 32px;
+    }
+    .sendCode{
+        flex-shrink: 0;
+        width: 224px;
+    }
+    .blockSend{
+        margin-top: 70px;
+        align-items: start;
+        display: flex;
+        gap: 24px;
+    }
+    .wrong{
+        font-size: 13px;
+    }
 }
 </style>
