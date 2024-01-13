@@ -79,7 +79,7 @@ function addToCart(){
                         <button :class="{sizeActive:tempProduct.size==='XL'}" class="noneBtn size"@click="tempProduct.size='XL'">XL</button>
                     </div>
                     <sous-swiper @addSous="addSous" class="souses" :souses="souses"></sous-swiper>
-                    <button class="noneBtn addToCart" @click="addToCart">Добавить в корзину {{ tempProduct.souses.reduce((a, cv)=> a + cv.price,0)+product.price}} ₽</button>
+                    <button class="noneBtn addToCart" @click="addToCart">Добавить в корзину {{ tempProduct.souses.reduce((a, cv)=> a + cv.price,0)+product.price}} ₴</button>
                 </div>
             </div>
     </start-modal>

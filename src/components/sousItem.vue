@@ -9,7 +9,7 @@ let props= defineProps({
     <button :class="{ select: sous.addC }" class="btnNone item d-flex flex-column align-items-center" @click="$emit('addSous',sous)">
         <img :src="sous.image">
         <h5 class="titleSous mb-0">{{sous.title}}</h5>
-        <h3 class="price mb-0">от {{sous.price}} ₽</h3>
+        <h3 class="price mb-0">от {{sous.price}} ₴</h3>
     </button>
 </template>
 

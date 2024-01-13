@@ -36,7 +36,7 @@ function cancel(){
 <template>
     <div>
         <div class="d-flex justify-content-between">
-            <span class="label">Имя</span>
+            <span class="label">{{ title }}</span>
             <button class="label save noneBtn me-4" v-if="!disabled && work" @click="dis2">Сохранить</button>
         </div>
         <div class="d-flex">

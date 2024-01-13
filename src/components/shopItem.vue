@@ -9,7 +9,7 @@ const props= defineProps({
 <template>
     <div class="myCard ">
         <img :src="product.image" alt="">
-        <span class="price text-start">от {{product.price}} ₽</span>
+        <span class="price text-start">от {{product.price}} ₴</span>
         <div class="block d-flex flex-column">
             <span class="title text-start">{{product.title}}</span>
             <span class="description text-start" >{{product.description}}</span>

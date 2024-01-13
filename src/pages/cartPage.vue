@@ -51,7 +51,7 @@ let sumPrice = computed(()=>{
                 <input-promo></input-promo>
             </div>
             <div >
-                <h3 class="priceText text-start">Сумма заказа: <span class="priceText2 ms-3">{{sumPrice}} ₽</span></h3>
+                <h3 class="priceText text-start">Сумма заказа: <span class="priceText2 ms-3">{{sumPrice}} ₴</span></h3>
             </div>
         </div>
         <div class="BackOform">

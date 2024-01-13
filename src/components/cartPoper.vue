@@ -53,7 +53,7 @@ let sumPrice = computed(()=>{
                     <swiper-in-cart :show="show" @delSouse="deleteSousInCart" @delete="deleteInCart"></swiper-in-cart>
                     <div v-if="store.state.cart.length>0" class="price d-flex justify-content-between align-items-center">
                         <span class="st">Сумма заказа</span>
-                        <span class="sumPrice">{{sumPrice}} ₽</span>
+                        <span class="sumPrice">{{sumPrice}} ₴</span>
                     </div>
                     <div v-if="store.state.cart.length>0 && addonArray(store.state.cart).length>0" class="addD d-flex justify-content-between align-items-center">
                         <span class="add ">Добавить к заказу?</span>

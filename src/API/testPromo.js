@@ -1,7 +1,7 @@
 
 export default async function testPromo(promoCode) {
     try {
-        const response = await fetch('http://localhost:3000/check-promo', {
+        const response = await fetch('http://192.168.0.161:3000/check-promo', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
