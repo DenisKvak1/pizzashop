@@ -42,6 +42,13 @@ function Addon(data){
 let sumPrice = computed(()=>{
     return (store.state.cart.reduce((sum, item) => sum + (item.product.price[item.product.size] * item.product.count), 0) + store.state.cart.reduce((acc, obj) => acc + obj.souses.reduce((s, src) => s + src.price, 0), 0) )* store.state.discount
 })
+function deleteSousInCart(Args){
+    let tempCart = JSON.parse(JSON.stringify(store.state.cart))
+    let index = store.state.cart.findIndex((element)=>element.product.id === Args['item'].product.id)
+    let temp = store.state.cart[index].souses.filter((element)=>element.id !== Args['data'].id)
+    tempCart[index].souses=temp
+    store.commit('setCart', tempCart)
+}
 </script>
 
 <template>
@@ -50,8 +57,11 @@ let sumPrice = computed(()=>{
             <header-with-status-bar class="hc" v-if="width>=768" ></header-with-status-bar>
             <div class="flex-grow-1">
                 <status-zakaz-bar :statusNumber="1" v-if="width<768" class="statusBar"></status-zakaz-bar>
-                <main-cart-block class="mainCartBlock"></main-cart-block>
-                <new-item-slider v-if="store.state.cart.length>0 && addonArray(store.state.cart).length>0" class="slider" @addToCart="Addon" :products="addonArray(store.state.cart)"></new-item-slider>
+                <main-cart-block @delSouse="deleteSousInCart" class="mainCartBlock"></main-cart-block>
+                <div class="mt-4">
+                    <span class="addD d-flex">Добавить к заказу?</span>
+                    <new-item-slider v-if="store.state.cart.length>0 && addonArray(store.state.cart).length>0" class="slider mt-3" @addToCart="Addon" :products="addonArray(store.state.cart)"></new-item-slider>
+                </div>
                 <h3 class="promoText text-start" v-if="store.state.cart.length>0">Промокод</h3>
                 <div v-if="store.state.cart.length>0" class="pricePromoBlock">
                     <div class="promoBlock" >
@@ -74,7 +84,12 @@ let sumPrice = computed(()=>{
 </template>
 
 <style scoped>
-
+.addD{
+    color: #F7D22D;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 17px; /* 85% */
+}
 .oform{
     grid-area: oform;
 }

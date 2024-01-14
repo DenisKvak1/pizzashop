@@ -16,14 +16,22 @@ let sumPrice = computed(() => {
 <template>
 <div class="compound d-flex flex-column">
     <div class="flex-grow-1">
-        <h5 class="sostZakaz text-start mb-4">Состов заказа</h5>
+        <h5 class="sostZakaz text-start mb-4">Состав заказа</h5>
         <div class="d-flex flex-column gap-4">
-            <div class="item d-flex align-items-center justify-content-between"  v-for="cartProduct in store.state.cart">
+            <div class="item"  v-for="cartProduct in store.state.cart">
                 <div class="d-flex flex-column">
-                    <h5 class="mb-0 text-start title ">{{ cartProduct.product.title }} за {{cartProduct.product.price[cartProduct.product.size]}} ₴</h5>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 text-start title ">{{ cartProduct.product.title }} за {{cartProduct.product.price[cartProduct.product.size]}} ₴</h5>
+                        <span class="price">{{
+                                cartProduct.product.price[cartProduct.product.size] +
+                                cartProduct.souses.reduce((a, cv) => a + cv.price, 0)
+                            }} ₴</span>
+                    </div>
                     <span class="text-start desc">{{size[cartProduct.product.size] }}</span>
+                    <div class="text-start sous d-flex align-items-center" v-for="sous in cartProduct.souses">
+                        <p class="itemSous mb-0">{{sous.title}}</p>
+                    </div>
                 </div>
-                <span class="price">599₽</span>
             </div>
         </div>
     </div>
@@ -85,5 +93,33 @@ let sumPrice = computed(() => {
     .compound{
         width: 337px;
     }
+}
+.sous{
+    height: 20px;
+}
+.itemSous{
+    color: #686466;
+    font-size: 11px;
+    font-weight: 600;
+    opacity: 0.6;
+}
+@media (min-width: 1100px) {
+    .itemSous{
+        font-size: 12px;
+        line-height: 28px;
+    }
+    .itemSous{
+        font-size: 12px;
+        line-height: 28px;
+    }
+}
+.sous{
+    height: 20px;
+}
+.itemSous{
+    color: #686466;
+    font-size: 11px;
+    font-weight: 600;
+    opacity: 0.6;
 }
 </style>

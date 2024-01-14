@@ -1,6 +1,7 @@
 <script setup>
 import MainCartItem from "@/components/mainCartItem.vue";
 import {useStore} from "vuex";
+import SousTextRep from "@/components/sousTextRep.vue";
 let store = useStore()
 function deleteInCart(data){
     store.dispatch('deleteItemInCart', data)
@@ -11,8 +12,9 @@ function deleteInCart(data){
 <div>
     <h1 v-if="store.state.cart.length>0" class="cartText text-start">Корзина</h1>
     <h1 v-if="store.state.cart.length===0" class="cartText text-start">Корзина пуста</h1>
-    <div>
-        <main-cart-item @delete="deleteInCart" v-for="product in store.state.cart" :product="product.product"></main-cart-item>
+    <div v-for="product in store.state.cart">
+        <main-cart-item @delete="deleteInCart" :product="product.product"></main-cart-item>
+        <sous-text-rep class="sous" v-for="sous in product.souses" :sous="sous" @delSouse="(data)=>$emit('delSouse', {data:data, item:product})"></sous-text-rep>
     </div>
 </div>
 </template>

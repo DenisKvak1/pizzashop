@@ -33,6 +33,19 @@ let props= defineProps({
         font-size: 12px;
         line-height: 28px;
     }
+    .itemSous{
+        font-size: 12px;
+        line-height: 28px;
+    }
+}
+.sous{
+    height: 20px;
+}
+.itemSous{
+    color: #686466;
+    font-size: 11px;
+    font-weight: 600;
+    opacity: 0.6;
 }
 
 </style>

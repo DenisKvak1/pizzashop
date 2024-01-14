@@ -115,12 +115,12 @@ input:focus{
     button.cancel{
         color: #F7D22D;
         position: absolute;
-        left: calc((100% - 768px )/2 + 84px);
+        left: calc((100% - 768px )/2 + 280px);
     }
     button.save{
         color: #9D9D9B;
         position: absolute;
-        left: calc((100% - 768px )/2 + 84px);
+        left: calc((100% - 768px )/2 + 280px);
     }
 }
 </style>
