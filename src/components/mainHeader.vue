@@ -189,7 +189,7 @@ a img{
 
 
 nav .container-fluid{
-    padding: 9px 10px !important;
+    padding: 9px 0 !important;
     justify-content: start;
     flex-wrap: wrap;
 }
@@ -234,7 +234,7 @@ nav:has(.show), nav:has(.collapsing){
         height: 60px;
     }
     nav .container-fluid{
-        padding:  20px !important;
+        padding:  20px 0!important;
     }
 }
 @media (min-width: 1200px){

@@ -19,8 +19,8 @@ function saveName(data){
 <template>
 <div class="d-flex flex-column gap-3">
     <h1 class="title text-start">Личные данные</h1>
-    <option-account :work="true" :name="store.state.accountDate.name" @save="saveName" :title="'Имя'"></option-account>
-    <option-account :work="false" :name="store.state.accountDate.phone" :title="'Телефон'"></option-account>
+    <option-account :type="'text'" :work="true" :name="store.state.accountDate.name" @save="saveName" :title="'Имя'"></option-account>
+    <option-account :type="'number'" :work="false" :name="store.state.accountDate.phone" :title="'Телефон'"></option-account>
 </div>
 </template>
 

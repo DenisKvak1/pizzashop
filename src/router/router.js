@@ -2,6 +2,7 @@ import mainPage from "@/pages/mainPage.vue";
 import {createRouter, createWebHistory} from 'vue-router'
 import cartPage from "@/pages/cartPage.vue";
 import personAccountPage from "@/pages/personAccountPage.vue";
+import deliveryPage from "@/pages/deliveryPage.vue";
 const routes = [
     {
         path: '/',
@@ -18,6 +19,10 @@ const routes = [
     {
         path: '/account',
         component: personAccountPage
+    },
+    {
+        path: '/delivery',
+        component: deliveryPage
     }
 ]
 

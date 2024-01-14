@@ -16,6 +16,7 @@ let code = ref()
 let state= ref(1)
 let invalid = ref(false)
 let invalidCode = ref(false)
+let error = ref(false)
 async function thisAuthPhone(){
     if(!isNaN(+phone.value)){
         let response = await authPhone(phone.value)
@@ -28,7 +29,7 @@ async function thisAuthPhone(){
     }
 }
 async function thisAuthPhoneCode(){
-    if((+code.value>=1000 && +code.value<=9999)){
+    if((+code.value>=100000 && +code.value<=999999)){
         let response = await authPhoneCode(code.value, phone.value)
         if(response.success){
             store.commit('setAccountDate',response.data)
@@ -36,7 +37,10 @@ async function thisAuthPhoneCode(){
                 setCookie('jwt', response.jwt, 10)
             }
             store.state.isAuth = true
-            await router.push('/account')
+            emit('close')
+        } else if(response.manyRequest) {
+            error.value = true
+            invalidCode.value = true
         }
     }else {
         invalidCode.value = true
@@ -58,9 +62,12 @@ async function thisAuthPhoneCode(){
                 <span class="numText text-start me-auto d-block">Номер телефона:</span>
                 <input :class="{invalid: invalid}"  v-model="phone" type="text" class="mobileText mt-2">
             </div>
-            <div class="mt-3 blockN" v-if="state===2">
-                <span class="numText text-start me-auto d-block">Код из СМС</span>
-                <input :class="{invalid: invalidCode}" v-model="code" type="text" class="mobileText mt-2">
+            <div v-if="state===2">
+                <div class="mt-3 blockN" >
+                    <span class="numText text-start me-auto d-block">Код из СМС</span>
+                    <input :class="{invalid: invalidCode}" v-model="code" type="text" class="mobileText mt-2">
+                </div>
+                <span v-if="error" class="error mt-2">Слишком много запросов, возвращайтесь через 10 минут</span>
             </div>
             <div class="blockSend" v-if="state===2">
                 <button class="mt-2 noneBtn sendCode" @click="thisAuthPhoneCode">Подтвердить код</button>
@@ -75,6 +82,9 @@ async function thisAuthPhoneCode(){
 </template>
 
 <style scoped>
+.error{
+    color: rgba(255, 24, 24, 0.8);
+}
 .invalid{
     box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
 }

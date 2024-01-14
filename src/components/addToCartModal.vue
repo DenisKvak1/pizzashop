@@ -15,9 +15,9 @@ let souses = reactive(JSON.parse(JSON.stringify(store.state.addOnForProducts[pro
 let tempProduct = reactive({
     product: props.product,
     souses: [],
-    size: 'M',
 });
 tempProduct.product.count=1
+tempProduct.product.size='M'
 function delSous(data) {
     let index = souses.findIndex((item) => item.id === data.id);
     if (souses[index].addC) {
@@ -74,12 +74,12 @@ function addToCart(){
                     </div>
                     <sous-text-rep-slider class="sousTextSlider" :souses="tempProduct.souses" @delSouse="delSous"></sous-text-rep-slider>
                     <div class="d-flex flex-wrap gap-2">
-                        <button :class="{sizeActive:tempProduct.size==='S'}" class="noneBtn size" @click="tempProduct.size='S'">S</button>
-                        <button :class="{sizeActive:tempProduct.size==='M'}" class="noneBtn size" @click="tempProduct.size='M'">M</button>
-                        <button :class="{sizeActive:tempProduct.size==='XL'}" class="noneBtn size"@click="tempProduct.size='XL'">XL</button>
+                        <button :class="{sizeActive:tempProduct.product.size==='S'}" class="noneBtn size" @click="tempProduct.product.size='S'">S</button>
+                        <button :class="{sizeActive:tempProduct.product.size==='M'}" class="noneBtn size" @click="tempProduct.product.size='M'">M</button>
+                        <button :class="{sizeActive:tempProduct.product.size==='XL'}" class="noneBtn size"@click="tempProduct.product.size='XL'">XL</button>
                     </div>
                     <sous-swiper @addSous="addSous" class="souses" :souses="souses"></sous-swiper>
-                    <button class="noneBtn addToCart" @click="addToCart">Добавить в корзину {{ tempProduct.souses.reduce((a, cv)=> a + cv.price,0)+product.price}} ₴</button>
+                    <button class="noneBtn addToCart" @click="addToCart">Добавить в корзину {{ tempProduct.souses.reduce((a, cv)=> a + cv.price,0)+product.price[product.size]}} ₴</button>
                 </div>
             </div>
     </start-modal>

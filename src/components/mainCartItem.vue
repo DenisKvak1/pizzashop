@@ -26,7 +26,7 @@ function removeCount() {
         <span class="title text-start">{{product.title}}</span>
         <span class="description text-start">{{product.description}}</span>
     </div>
-    <span class="price">{{product.price}} ₴</span>
+    <span class="price">{{product.price[product.size]}} ₴</span>
 </div>
 </template>
 

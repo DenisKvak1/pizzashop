@@ -27,7 +27,7 @@ function removeCount() {
         </div>
         <div class="d-flex flex-column justify-content-between h-100 mt-1 ">
             <button @click="$emit('delete', product)" class="noneBtn align-self-end"><img class="closeImg" src="@/assets/images/DeleteCart.png"></button>
-            <span class="price">{{product.price}} ₴</span>
+            <span class="price">{{product.price[product.size]}} ₴</span>
         </div>
     </div>
     <div class="line"></div>

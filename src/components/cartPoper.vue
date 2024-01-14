@@ -29,12 +29,13 @@ function closeS(){
     setTimeout(()=>show.value=false, 150)
 }
 function Addon(data){
-    let tempObject = {product: data,souses: [], size: 'M'}
+    let tempObject = {product: data,souses: []}
+    tempObject.product.size='M'
     tempObject.product.count=1
     store.dispatch('pushItemInCart', tempObject)
 }
 let sumPrice = computed(()=>{
-    return (store.state.cart.reduce((sum, item) => sum + (item.product.price * item.product.count), 0) + store.state.cart.reduce((acc, obj) => acc + obj.souses.reduce((s, src) => s + src.price, 0), 0) )* store.state.discount
+    return (store.state.cart.reduce((sum, item) => sum + (item.product.price[item.product.size] * item.product.count), 0) + store.state.cart.reduce((acc, obj) => acc + obj.souses.reduce((s, src) => s + src.price, 0), 0) )* store.state.discount
 })
 </script>
 

@@ -59,6 +59,7 @@ async function thisTestPromo(){
     color: #686466;
     font-size: 13px;
     font-weight: 600;
+
 }
 .input-group-text{
     z-index: 1001;

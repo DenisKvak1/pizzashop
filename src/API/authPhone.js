@@ -1,6 +1,6 @@
 export async function authPhone(phone) {
     try {
-        const response = await fetch('http://192.168.0.161:3000/auth', {
+        const response = await fetch('http://213.227.241.132:3000/auth', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -16,7 +16,7 @@ export async function authPhone(phone) {
 }
 export async function authPhoneCode(code, phone){
     try {
-        const response = await fetch('http://192.168.0.161:3000/auth/code', {
+        const response = await fetch('http://213.227.241.132:3000/auth/code', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ export async function authPhoneCode(code, phone){
 }
 export async function loadData(jwt){
     try {
-        const response = await fetch(`http://192.168.0.161:3000/auth/load`, {
+        const response = await fetch(`http://213.227.241.132:3000/auth/load`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ export async function loadData(jwt){
 }
 export async function saveData(jwt , ForSend){
     try {
-        const response = await fetch('http://192.168.0.161:3000/auth/patchData', {
+        const response = await fetch('http://213.227.241.132:3000/auth/patchData', {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

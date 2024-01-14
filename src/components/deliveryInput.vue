@@ -1,58 +1,55 @@
 <script setup>
 import {onMounted, ref, watch} from "vue";
-let emit = defineEmits(['save'])
+import SelectTimeModal from "@/components/selectTimeModal.vue";
+let emit = defineEmits(['save', 'newTime'])
+let show = ref(false)
 let props = defineProps({
-    name : String,
-    work : Boolean,
-    title : String,
-    type : String
+
 })
 let disabled =ref(true)
 let name = ref()
-let backName = ref()
-onMounted(()=>{
-    name.value = props.name
+let myDate = ref()
+watch(()=>name.value,()=>{
+    emit('newTime',myDate.value)
 })
-watch(()=>props, ()=>{
-    name.value = props.name
-}, {deep: true})
 function dis(){
-    disabled.value ? disabled.value=false : disabled.value=true
-    backName.value = name.value
+    show.value=true
 }
-function dis2(){
-    disabled.value ? disabled.value=false : disabled.value=true
-    if(name.value){
-        emit('save', name.value)
+function select(date){
+    myDate.value = date
+    show.value=false
+    if(date){
+        name.value = `≈ ${date.getHours()}:${date.getMinutes()}`
     } else {
-        name.value = backName.value
+        name.value='Побыстрее'
     }
-}
-function cancel(){
-    disabled.value ? disabled.value=false : disabled.value=true
-    name.value = backName.value
 }
 </script>
 
 <template>
     <div>
         <div class="d-flex justify-content-between">
-            <span class="label">{{ title }}</span>
-            <button class="label save noneBtn me-4" v-if="!disabled && work" @click="dis2">Сохранить</button>
+            <span class="label">Время доставки</span>
+            <button class="label save noneBtn me-4" v-if="!disabled" @click="dis2">Сохранить</button>
         </div>
         <div class="d-flex">
-            <input v-model="name" :type="type" :disabled="disabled">
+            <input v-model="name" placeholder="Побыстрее" :disabled="disabled">
             <div class="changeWrap">
-                <button v-show="disabled && work" class="noneBtn change" @click="dis">Изменить</button>
+                <button v-show="disabled" class="noneBtn change" @click="dis">Изменить</button>
             </div>
         </div>
         <div class="d-flex justify-content-end">
-            <button v-if="!disabled && work" class="noneBtn label cancel me-4" @click="cancel">Отменить</button>
+            <button v-if="!disabled" class="noneBtn label cancel me-4" @click="cancel">Отменить</button>
         </div>
     </div>
+    <select-time-modal v-if="show" @select="select" :show="show" @close="show = false"></select-time-modal>
 </template>
 
 <style scoped>
+input::placeholder{
+    color: #231F20;
+    opacity: 0.82;
+}
 button.cancel{
     color: #F7D22D;
     position: absolute;
@@ -109,7 +106,7 @@ input:focus{
     }
 }
 @media (min-width: 1100px) {
-    input{
+    input {
         width: 539px;
     }
     button.cancel{
