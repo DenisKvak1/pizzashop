@@ -10,7 +10,7 @@ const props=defineProps({
     <img :src="product.image" alt="">
     <div class="d-flex flex-column">
         <span class="title">{{product.title}}</span>
-        <span class="text-start price">от {{product.price['S']}} &#8381;</span>
+        <span class="text-start price">от {{product.price['S']}} ₴</span>
     </div>
 </button>
 </template>
