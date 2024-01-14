@@ -96,6 +96,9 @@ watch(() => route.params.type, (newType, oldType) => {
     .myContainer {
         padding: 0px 20px;
     }
+    .hc {
+        padding: 0px 20px;
+    }
 }
 
 </style>

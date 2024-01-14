@@ -18,6 +18,7 @@ let invalid = ref(false)
 let invalidCode = ref(false)
 let error = ref(false)
 async function thisAuthPhone(){
+    phone.value = phone.value.trim()
     if(!isNaN(+phone.value)){
         let response = await authPhone(phone.value)
         if(response.success){

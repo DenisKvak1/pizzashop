@@ -78,4 +78,9 @@ function deleteAuth(){
     padding-left: 10px;
     padding-right: 10px;
 }
+@media (min-width: 768px) {
+    .hc {
+        padding: 0px 20px;
+    }
+}
 </style>

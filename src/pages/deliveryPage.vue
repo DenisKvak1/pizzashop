@@ -128,5 +128,8 @@ async function clearanceOfProduct(mainData){
         display: flex;
         justify-content: space-between;
     }
+    .hc {
+        padding: 0px 20px;
+    }
 }
 </style>

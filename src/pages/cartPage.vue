@@ -163,5 +163,8 @@ function deleteSousInCart(Args){
     .backButton{
         margin: 0 !important;
     }
+    .hc {
+        padding: 0px 20px;
+    }
 }
 </style>
