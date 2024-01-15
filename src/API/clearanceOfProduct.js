@@ -1,7 +1,7 @@
 
 export async function  clearanceOfProductApi(myData){
     try {
-        const response = await fetch('http://213.227.241.132:3000/newOrder', {
+        const response = await fetch('https://13.48.148.160:3000/newOrder', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
